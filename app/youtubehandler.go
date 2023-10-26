@@ -37,7 +37,6 @@ func getChannelStats(k string, channelId string) httprouter.Handle {
 			return
 		}
 
-		fmt.Println(response.Items[0].Snippet.Title)
 		yt := YoutubeStats{
 			Subscribers: int(response.Items[0].Statistics.SubscriberCount),
 			ChannelName: response.Items[0].Snippet.Title,
