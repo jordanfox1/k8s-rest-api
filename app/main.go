@@ -10,17 +10,24 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/joho/godotenv"
 	"github.com/julienschmidt/httprouter"
 )
 
 func newRouter() *httprouter.Router {
 	mux := httprouter.New()
-	// ytApiKey := os.Getenv("YOUTUBE_API_KEY")
-	// if ytApiKey == "" {
-	// 	log.Fatal("error: youtube api key not set, termintating...")
-	// }
+	godotenv.Load()
 
-	mux.GET("/youtube/channel/stats", getChannelStats("AIzaSyDmBGJxs2ESBm8Z0ikUhKzc42ozlB4PxKA"))
+	ytApiKey := os.Getenv("YOUTUBE_API_KEY")
+	if ytApiKey == "" {
+		log.Fatal("error: youtube api key not set, termintating...")
+	}
+	ytChannelId := os.Getenv("YOUTUBE_CHANNEL_ID")
+	if ytChannelId == "" {
+		log.Fatal("error: channel id not set, termintating...")
+	}
+
+	mux.GET("/youtube/channel/stats", getChannelStats(ytApiKey, ytChannelId))
 
 	return mux
 }

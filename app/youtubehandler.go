@@ -18,7 +18,7 @@ type YoutubeStats struct {
 	Views          int    `json:"views"`
 }
 
-func getChannelStats(k string) httprouter.Handle {
+func getChannelStats(k string, channelId string) httprouter.Handle {
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 
 		ctx := context.Background()
@@ -30,7 +30,7 @@ func getChannelStats(k string) httprouter.Handle {
 		}
 
 		call := yts.Channels.List([]string{"snippet, contentDetails, statistics"})
-		response, err := call.Id("UCrNWbUDkW45inE8kIFkwAgQ").Do()
+		response, err := call.Id(channelId).Do()
 		if err != nil {
 			fmt.Println("failed to create service")
 			w.WriteHeader(http.StatusBadRequest)

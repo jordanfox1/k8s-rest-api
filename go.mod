@@ -3,6 +3,7 @@ module k8s-rest-api
 go 1.21.1
 
 require (
+	github.com/joho/godotenv v1.5.1
 	github.com/julienschmidt/httprouter v1.3.0
 	google.golang.org/api v0.148.0
 )
