@@ -15,16 +15,14 @@ import (
 
 func newRouter() *httprouter.Router {
 	mux := httprouter.New()
-	mux.GET("/youtube/channel/stats", getChannelStats())
+	// ytApiKey := os.Getenv("YOUTUBE_API_KEY")
+	// if ytApiKey == "" {
+	// 	log.Fatal("error: youtube api key not set, termintating...")
+	// }
+
+	mux.GET("/youtube/channel/stats", getChannelStats("AIzaSyDmBGJxs2ESBm8Z0ikUhKzc42ozlB4PxKA"))
 
 	return mux
-}
-
-func getChannelStats() httprouter.Handle {
-	// return a function that matches the .Handle signature
-	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-		w.Write([]byte("response!"))
-	}
 }
 
 func main() {
