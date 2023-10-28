@@ -42,11 +42,11 @@ spec:
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
+              path: /youtube/channel/stats
               port: http
           readinessProbe:
             httpGet:
-              path: /
+              path: /youtube/channel/stats
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
