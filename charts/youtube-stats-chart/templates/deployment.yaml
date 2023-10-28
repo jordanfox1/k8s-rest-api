@@ -38,7 +38,7 @@ spec:
                 name: {{ include "youtube-stats-chart.fullname" . }}-secrets
           ports:
             - name: http
-              containerPort: {{ .Values.service.port }}
+              containerPort: 10101
               protocol: TCP
           livenessProbe:
             httpGet:
